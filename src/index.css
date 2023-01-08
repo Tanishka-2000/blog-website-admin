@@ -1,0 +1,501 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+
+nav{
+  font-size: 2rem;
+  
+  font-weight: 700;
+  padding: 10px 15%;
+  box-shadow: 0 1px 4px 5px #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav a {
+  text-decoration: none;
+  color: #777;
+}
+
+
+
+.light{
+  font-weight: 300;
+}
+
+.error{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+  font-size: 1.7rem;
+  height: 100vh;
+  color: #777;
+}
+
+.error i{
+ /* background-color: #eee; */
+ box-shadow: 1px 1px 15px 5px #ddd;
+ padding: 10px;
+ border-radius: 5px;
+}
+
+.error img{
+  height: 30vw;
+}
+
+.error .material-symbols-outlined{
+  font-size: 5rem;
+}
+
+.input-error{
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: rgba(225, 0, 0, .8);
+}
+
+/* --------hero container------ */
+.hero{
+  padding: 30px 5px;
+  max-width: 1200px;
+  margin: 10px auto;
+  font-size: 1.6rem;
+  color: #555;
+  position: relative;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero a.new-post{
+  position: fixed;
+  top: 100px;
+  left: 85%;
+  z-index: 1;
+}
+
+.hero a.new-post .material-symbols-outlined {
+  border: 3px solid #777;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 3rem;
+  color: #777;
+}
+
+.hero a.new-post .material-symbols-outlined:hover{
+  background-color: #777;
+  color: white;
+}
+
+.hero-image{
+  max-width: 500px;
+}
+
+@media (width <= 500px) {
+  .hero-image{
+    width: 300px;
+  }
+}
+
+.hero-about{
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  max-width: 700px;
+  padding: 50px ;
+  background-color: white;
+  line-height: 1.5;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px 3px #ddd;;
+}
+
+@media (width < 768px) {
+  .hero{
+    align-items: center;
+  }
+
+  .hero-about{
+    position: static;
+    padding: 20px;
+  }
+
+}
+
+.hero-about h1{
+  margin: 15px 0;
+}
+
+main{
+  padding: 10px 5px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+main .cards-heading{
+  text-align: center;
+  padding: 30px;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+}
+
+/* ------card--------- */
+
+.cards-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+  gap: 30px;
+}
+
+
+.card{
+  display: flex;
+  aspect-ratio: 2/1;
+  box-shadow: 3px 3px 3px 5px #ddd;
+  border-radius: 7px;
+  color: #555;
+}
+
+
+.card > * {
+  flex:1;
+}
+.card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (width < 605px) {
+
+  .cards-container{
+    display: block;
+  }
+
+  .card {
+    flex-direction: column;
+    aspect-ratio: auto ;
+  }
+
+  .card img{
+    aspect-ratio: 1/1;
+  }
+}
+
+.card .info{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card .info h2{
+  margin: 20px 0;
+}
+
+
+.card a{
+  display: inline-block;
+  border: 1px solid #555;
+  padding: 10px;
+  margin: 20px 0;
+  color: #555;
+  font-size: inherit;
+  font-weight: 300;
+  text-decoration: none;
+  background-color: white;
+}
+
+.card a:hover{
+  background-color: #555;
+  color: white;
+}
+
+.btn-group{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* -----post------ */
+
+.post{
+  max-width: 1300px;
+  margin: 30px auto;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 1.3;
+  color: #555;
+}
+
+ @media (width < 1350px) {
+  .post{
+    margin: 30px 20px;
+  }
+ }
+.postMetaData{
+  display: flex;
+  justify-content: space-between;
+}
+
+.post p{
+  margin: 8px 0;
+}
+
+.post .createdAt{
+  text-align: end;
+  font-size: 1.7rem;
+}
+
+.post img{
+  width: 100%;
+  border-radius: 10px;
+}
+
+.post .about{
+  border-left: 1px solid #555;
+  border-right: 1px solid #555;
+  padding: 25px;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  font-style: italic;
+  color: #888;
+  font-weight: 700;
+}
+
+.post .about::before,
+.post .about::after{
+  content: '\"';
+  margin: 20px;
+}
+
+.btn-last{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.post form{
+  margin: 10px 0;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+
+.post form label{
+  display: block;
+  margin: 15px 0;
+  font-weight:500 ;
+}
+
+.post form input,
+.post form textarea
+{
+  font-size: 1.4rem;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #555;
+  outline: none;
+}
+
+.post form input:focus,
+.post form textarea:focus{
+  border-bottom: 3px solid #555;
+}
+
+
+.post :is(button, a){
+  background-color: white;
+  color: #555;
+  border: 1px solid #555;
+  padding: 10px 20px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.post :is(button, a):hover{
+  background-color: #555;
+  color: white;
+}
+
+
+.post .comment-btn{
+  display: inline-block;
+  margin: 20px auto;
+  color: #555;
+  font-weight: 700;
+  text-decoration: none;
+  /* padding: 15px; */
+  /* border-radius: 15px; */
+  border-bottom: 1px solid #555;
+ 
+}
+
+.post .comment-btn:hover{
+  color: white;
+  background-color: #555;
+}
+
+.post .grey{
+  pointer-events: none;
+  color: #999;
+}
+/* ------comment------- */
+
+.comment{
+  font-size: 1.8rem;
+  /* border-bottom: 1px solid #555; */
+  box-shadow: 2px 2px 3px 3px #ccc;
+  margin-bottom: 50px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.comment .name{
+  position: relative;
+  padding-left: 50px ;
+  font-weight: 700;
+}
+
+.comment .material-symbols-outlined{
+  position: absolute;
+  font-size: 3rem;
+  top: 0;
+  left: 0;
+}
+
+.comment-date{
+  font-size: 1.4rem;
+}
+
+/* delete comment form */
+
+.comment-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+/*--------- post form---------- */
+
+.post-form,
+.login-form{
+  border: 1px solid #555;
+  padding: 20px;
+  border-radius: 10px;
+  width: 70vw;
+  margin: 100px auto;
+  font-size: 1.5rem;
+  color: #555;
+}
+.post-form h1,
+.login-form h1{
+  text-align: center;
+}
+
+.post-form > div,
+.login-form > div{
+  margin: 15px 0;
+}
+
+.post-form input,
+.post-form textarea,
+.login-form input{
+  width: 100%;
+  font-size: 1.7rem;
+  border: none;
+  border-bottom: 1px solid #555;
+  color: #777;
+  /* background-color: #eee; */
+  padding: 5px;
+}
+
+.post-form button,
+.login-form button{
+  font-size: 1.7rem;
+  padding: 10px 30px;
+  border: 1px solid #555;
+  background-color: white;
+  border-radius: 5px;
+  color: #555;
+}
+
+.post-form button:hover,
+.login-form button:hover{
+  background-color: #555;
+  color: white;
+}
+
+/* custom checkbox */
+
+.checkbox-label{
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+}
+
+/* ----footer------ */
+
+footer{
+  background-color: #555;
+  color: white;
+  padding: 80px 15%;
+  margin-top: 100px;
+  font-size: 1.4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+footer .content{
+  margin: 30px 0;
+}
+
+
+@media (width <= 768px) {
+  footer{
+    padding: 40px 20px;
+    grid-template-columns: 1fr;
+  }
+}
+
+footer h1{
+  text-transform: uppercase;
+  font-size: 4rem;
+}
+
+footer .cta{
+  position: relative;
+  padding-left: 60px;
+  white-space: wrap;
+}
+
+footer .material-symbols-outlined{
+  font-size: 3rem;
+  position: absolute;
+  left:0px;
+  top: 5px;
+}
+
+footer .cta-heading{
+  text-transform: uppercase;
+  margin: 8px 0;
+}
+ 
