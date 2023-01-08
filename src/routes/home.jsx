@@ -4,7 +4,7 @@ import { useLoaderData, Link, redirect } from 'react-router-dom';
 
 export async function loader(){
 
-  const response = await fetch('http://localhost:3000/api/admin/posts',{
+  const response = await fetch('https://blog-api-vasl.onrender.com/api/admin/posts',{
     method: 'GET',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`

@@ -5,7 +5,7 @@ import Comment from './comments';
 
 export async function loader({ params }){
   console.log('post fetched');
-  const response = await fetch(`http://localhost:3000/api/admin/posts/${params.postId}`,{
+  const response = await fetch(`https://blog-api-vasl.onrender.com/api/admin/posts/${params.postId}`,{
     method: 'GET',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -31,7 +31,7 @@ export default function Post(){
       setCommentShown(false);
       return;
     }
-    const response = await fetch(`http://localhost:3000/api/posts/${post._id}/comments`);
+    const response = await fetch(`https://blog-api-vasl.onrender.com/api/posts/${post._id}/comments`);
     const data = await response.json();
     setComments(data.comments);
     setCommentShown(true);
@@ -40,7 +40,7 @@ export default function Post(){
   const deleteComment = async (commentId) => {
     console.log('deletecomment');
 
-    const response = await fetch(`http://localhost:3000/api/admin/comments/${commentId}`,{
+    const response = await fetch(`https://blog-api-vasl.onrender.com/api/admin/comments/${commentId}`,{
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
