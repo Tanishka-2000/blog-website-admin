@@ -1,7 +1,9 @@
 import { Form, redirect, useActionData, useLoaderData } from "react-router-dom";
+import { Editor } from '@tinymce/tinymce-react';
+import { useRef, useState } from "react";
 
 export async function loader({ params }){
-  const response = await fetch(`http://localhost:3000/api/admin/posts/${params.postId}`,{
+  const response = await fetch(`https://blog-api-vasl.onrender.com/api/admin/posts/${params.postId}`,{
     method: 'GET',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -22,8 +24,9 @@ export async function action({request,  params}){
   if(post.publish) post.publish = true;
   else post.publish = false;
 
-
-  const respone = await fetch(`http://localhost:3000/api/admin/posts/${params.postId ? params.postId : ''}`,{
+console.log(post);
+return;
+  const respone = await fetch(`https://blog-api-vasl.onrender.com/api/admin/posts/${params.postId ? params.postId : ''}`,{
     method: params.postId ? 'PUT' : 'POST',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -43,6 +46,21 @@ export default function PostForm(){
 
   const post = useLoaderData();
   const error = useActionData();
+  const [data, setData] = useState('');
+
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+      // console.log(editorRef.current);
+      setData(editorRef.current.getContent());
+    }
+  };
+
+  // if(post && editorRef.current){
+  //   console.log(post.content);
+  //   editorRef.current.setContent(post.content);
+  // }
 
   return(
     <Form method='post' className='post-form'>
@@ -59,7 +77,29 @@ export default function PostForm(){
       </div>
       <div>
         <label htmlFor='content'>Post:</label>
-        <textarea id='content' name='content' rows='5' required={true} defaultValue={post ? post.content : ''}></textarea>
+        <input type = 'hidden' name='content' value={data} />
+        <Editor
+        apiKey='p1ep95ib0u7yyusqjfyzggeiji44omzcywy1b642myrnitp2'
+        onInit={(evt, editor) => editorRef.current = editor }
+        initialValue={post ? post.content : "<p>This is the initial content of the editor.</p>"}
+        init={{
+          height: 500,
+          menubar: false,
+          plugins: [
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+          ],
+          toolbar: 'undo redo | blocks | ' +
+            'bold italic forecolor fontsize | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent code| ' +
+            'removeformat | help',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16pt }',
+          font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt'
+        }}
+      />
+      {/* <button onClick={log}>Log editor content</button> */}
+        {/* <textarea id='content' name='content' rows='5' required={true} defaultValue={post ? post.content : ''}></textarea> */}
         {error && <span className='input-error'>{error.content}</span>}
       </div>
       <div>
@@ -79,7 +119,7 @@ export default function PostForm(){
         </label>
       </div>
       <div className='btn-last'>
-        <button type='submit'>Post</button>
+        <button type='submit' onClick={log}>Post</button>
       </div>
     </Form>
   )

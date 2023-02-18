@@ -20,15 +20,15 @@ function Comment({comment, deleteComment}){
   return(
     <div className="comment">
       <div className="comment-header">
-        <p className="name">
+        <div className="name">
           <span className="material-symbols-outlined">account_circle</span>
-          {comment.username}
-        </p>
+          <p>{comment.username}</p>
+      <p className='comment-date'><i>{comment.timestamp ? comment.timestamp:'Fri Aug 8th 2022'}</i></p>
+        </div>
         <form onSubmit={handleSubmit}>
           <button type='submit'>delete</button>
         </form>
       </div>
-      <p className='comment-date'><i>{comment.timestamp ? comment.timestamp:'Fri Aug 8th 2022'}</i></p>
       <p>{comment.comment}</p>
       
     </div>
